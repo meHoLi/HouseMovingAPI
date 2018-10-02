@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HouseMovingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarType" Type="varchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="varchar" MaxLength="50" />
+          <Property Name="Distance" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EndPlace" Type="varchar" MaxLength="200" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="OrderNo" Type="varchar" MaxLength="50" />
+          <Property Name="OrgPrice" Type="varchar" MaxLength="200" />
+          <Property Name="PayPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PeopleNum" Type="int" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="SalePrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ServiceTime" Type="varchar" MaxLength="50" />
+          <Property Name="StartPlace" Type="varchar" MaxLength="50" />
+          <Property Name="Remark" Type="varchar" MaxLength="500" />
+          <Property Name="PayTime" Type="varchar" MaxLength="50" />
+          <Property Name="PayState" Type="varchar" MaxLength="50" />
+          <Property Name="PayType" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="HouseMovingDBModelStoreContainer">
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HouseMovingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Distance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EndPlace" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="OrderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrgPrice" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PayPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PeopleNum" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ServiceTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PayTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PayState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PayType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="HouseMovingDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Order" EntityType="Self.Order" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HouseMovingDBModelStoreContainer" CdmEntityContainer="HouseMovingDBEntities">
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="HouseMovingDBModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CarType" ColumnName="CarType" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="EndPlace" ColumnName="EndPlace" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="OrgPrice" ColumnName="OrgPrice" />
+                <ScalarProperty Name="PayPrice" ColumnName="PayPrice" />
+                <ScalarProperty Name="PeopleNum" ColumnName="PeopleNum" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="ServiceTime" ColumnName="ServiceTime" />
+                <ScalarProperty Name="StartPlace" ColumnName="StartPlace" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="PayTime" ColumnName="PayTime" />
+                <ScalarProperty Name="PayState" ColumnName="PayState" />
+                <ScalarProperty Name="PayType" ColumnName="PayType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
