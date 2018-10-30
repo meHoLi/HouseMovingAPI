@@ -11,9 +11,17 @@ namespace HouseMovingAPI.Controllers
     public class OrderController : Controller
     {
         // GET: Order
-        public ActionResult Index()
+        public ActionResult Index(string startTime, string endTime)
         {
-            return View();
+            using (HouseMovingDBEntities db = new HouseMovingDBEntities())
+            {
+                ResponseMessage msg = new ResponseMessage();
+                msg.Status = true;
+                var list = db.Order.Where(p => string.Compare(p.CreateTime, startTime, StringComparison.Ordinal) >= 0
+                           && string.Compare(p.CreateTime, endTime, StringComparison.Ordinal) <= 0).ToList();
+                msg.Data = list;
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Add(Order model)
