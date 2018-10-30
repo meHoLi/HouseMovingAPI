@@ -8,24 +8,23 @@ using System.Web.Mvc;
 
 namespace HouseMovingAPI.Controllers
 {
-    public class OrderController : Controller
+    public class CommentController : Controller
     {
-        // GET: Order
+        // GET: Comment
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Add(Order model)
+        public ActionResult Add(Comment model)
         {
             using (HouseMovingDBEntities db = new HouseMovingDBEntities())
             {
                 ResponseMessage msg = new ResponseMessage();
                 try
                 {
-                    model.OrderNo = DateTime.Now.ToString(FormatDateTime.DateTimeFormatNoStr);
                     model.CreateTime = DateTime.Now.ToString(FormatDateTime.LongDateTimeStr);
-                    var entity = db.Order.Add(model);
+                    var entity = db.Comment.Add(model);
                     db.SaveChanges();
                     msg.Status = true;
                 }

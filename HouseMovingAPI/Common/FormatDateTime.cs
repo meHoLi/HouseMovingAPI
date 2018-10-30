@@ -10,5 +10,6 @@ namespace HouseMovingAPI.Common
         public const string LongDateTimeStr = "yyyy-MM-dd HH:mm:ss";
         public const string LongDateTimeNoSecondStr = "yyyy-MM-dd HH:mm";
         public const string ShortDateTimeStr = "yyyy-MM-dd";
+        public const string  DateTimeFormatNoStr = "yyyyMMddHHmmssfff";
     }
 }

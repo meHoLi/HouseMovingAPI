@@ -32,5 +32,6 @@ namespace HouseMovingAPI.Models
         public string PayTime { get; set; }
         public string PayState { get; set; }
         public string PayType { get; set; }
+        public byte[] OpenID { get; set; }
     }
 }

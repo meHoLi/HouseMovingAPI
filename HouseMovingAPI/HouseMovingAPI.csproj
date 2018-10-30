@@ -148,9 +148,14 @@
     <Compile Include="Common\JsonpResult.cs" />
     <Compile Include="Common\ObjectHelper.cs" />
     <Compile Include="Common\ResponseMessage.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\WXPayController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Comment.cs">
+      <DependentUpon>HouseMovingDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HouseMovingDBModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -195,9 +200,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Comment\" />
+    <Folder Include="Views\WXPay\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WxPayAPI\WxPayAPI\WxPayAPI.csproj">
+      <Project>{25911370-f06a-4956-8ee3-659a7ba14961}</Project>
+      <Name>WxPayAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
