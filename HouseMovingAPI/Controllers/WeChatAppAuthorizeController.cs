@@ -22,8 +22,8 @@ namespace HouseMovingAPI.Controllers
         //private const string APPID = "wx3acda84288bf9573";
         //private const string AppSecret = "06a0ccc89e812a7234a851aa9ea06fc4";
         //my
-        private const string APPID = "wx8bf5faf6bc3ec3ef";
-        private const string AppSecret = "e2f46976ee3294a02eff9124e132cbdc";
+        private const string APPID = "wx8bf5faf6bc3ec3ef1";
+        private const string AppSecret = "e2f46976ee3294a02eff9124e132cbdc1";
 
         public ActionResult Index()
         {
