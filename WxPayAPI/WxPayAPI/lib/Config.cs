@@ -18,24 +18,23 @@ namespace WxPayAPI
         * KEY：商户支付密钥，参考开户邮件设置（必须配置）
         * APPSECRET：公众帐号secert（仅JSAPI支付的时候需要配置）
         */
-        public static string APPID = "aaaa";
-        public static string MCHID = "aaaa";
-        public static string KEY = "aaaaa";
-        public static string APPSECRET = "aaaa";
+        public static string APPID = "wx8bf5faf6bc3ec3ef";
+        public static string MCHID = "1517847581";
+        public static string KEY = "gmjlovecjy1111111111111111111111";
+        public static string APPSECRET = "e2f46976ee3294a02eff9124e132cbdc";
 
         //=======【证书路径设置】===================================== 
         /* 证书路径,注意应该填写绝对路径（仅退款、撤销订单时需要）
         */
         public static string SSLCERT_PATH = "cert/apiclient_cert.p12";
-        public static string SSLCERT_PASSWORD = "aaaa";
+        public static string SSLCERT_PASSWORD = "1517847581";
 
 
 
         //=======【支付结果通知url】===================================== 
         /* 支付结果通知回调url，用于商户接收支付结果
         */
-        public static string NOTIFY_URL = "http://www.ees.com.cn/WMS/Payment/WxPayNotifyUrl.aspx";
-        //"http://pay.houjiale.com/WxPayNotifyUrl.aspx";//"http://paysdk.weixin.qq.com/example/ResultNotifyPage.aspx";
+        public static string NOTIFY_URL = "http://www.xiaoshangbang.com/HouseMovingAPI/WXPay/PayNotifyUrl";
 
         //=======【商户系统后台机器IP】===================================== 
         /* 此参数可手动配置也可在程序中自动获取

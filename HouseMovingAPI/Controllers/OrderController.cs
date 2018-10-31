@@ -11,13 +11,14 @@ namespace HouseMovingAPI.Controllers
     public class OrderController : Controller
     {
         // GET: Order
-        public ActionResult Index(string startTime, string endTime)
+        public ActionResult Index(string openID, string startTime, string endTime)
         {
             using (HouseMovingDBEntities db = new HouseMovingDBEntities())
             {
                 ResponseMessage msg = new ResponseMessage();
                 msg.Status = true;
-                var list = db.Order.Where(p => string.Compare(p.CreateTime, startTime, StringComparison.Ordinal) >= 0
+                var list = db.Order.Where(p => p.OpenID==openID
+                           &&string.Compare(p.CreateTime, startTime, StringComparison.Ordinal) >= 0
                            && string.Compare(p.CreateTime, endTime, StringComparison.Ordinal) <= 0).ToList();
                 msg.Data = list;
                 return Json(msg, JsonRequestBehavior.AllowGet);
@@ -35,6 +36,27 @@ namespace HouseMovingAPI.Controllers
                     model.CreateTime = DateTime.Now.ToString(FormatDateTime.LongDateTimeStr);
                     var entity = db.Order.Add(model);
                     db.SaveChanges();
+                    msg.Status = true;
+                    msg.Data = model;
+
+                }
+                catch (Exception e)
+                {
+                    msg.Status = false;
+                    msg.Result = "500";
+                }
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult Update(int id)
+        {
+            using (HouseMovingDBEntities db = new HouseMovingDBEntities())
+            {
+                ResponseMessage msg = new ResponseMessage();
+                try
+                {
+                    db.Database.ExecuteSqlCommand("update [Order] set   where id= " + id);
                     msg.Status = true;
                 }
                 catch (Exception e)

@@ -11,9 +11,16 @@ namespace HouseMovingAPI.Controllers
     public class CommentController : Controller
     {
         // GET: Comment
-        public ActionResult Index()
+        public ActionResult Index(string openID)
         {
-            return View();
+            using (HouseMovingDBEntities db = new HouseMovingDBEntities())
+            {
+                ResponseMessage msg = new ResponseMessage();
+                msg.Status = true;
+                var list = db.Comment.Where(p => p.OpenID == openID).ToList();
+                msg.Data = list;
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Add(Comment model)

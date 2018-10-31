@@ -15,6 +15,7 @@ namespace HouseMovingAPI.Models
     public partial class Order
     {
         public int ID { get; set; }
+        public string OpenID { get; set; }
         public string CarType { get; set; }
         public string CreateTime { get; set; }
         public Nullable<decimal> Distance { get; set; }
@@ -32,6 +33,5 @@ namespace HouseMovingAPI.Models
         public string PayTime { get; set; }
         public string PayState { get; set; }
         public string PayType { get; set; }
-        public byte[] OpenID { get; set; }
     }
 }

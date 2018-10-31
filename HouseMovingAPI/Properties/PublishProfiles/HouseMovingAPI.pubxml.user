@@ -22,7 +22,13 @@
       <publishTime>10/02/2018 12:06:13</publishTime>
     </File>
     <File Include="bin/HouseMovingAPI.dll">
-      <publishTime>10/02/2018 12:06:43</publishTime>
+      <publishTime>11/01/2018 00:17:43</publishTime>
+    </File>
+    <File Include="bin/LitJson.dll">
+      <publishTime>05/19/2014 21:40:52</publishTime>
+    </File>
+    <File Include="bin/log4net.dll">
+      <publishTime>10/30/2018 21:42:17</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>10/02/2018 11:18:14</publishTime>
@@ -50,6 +56,9 @@
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>10/02/2018 11:18:09</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>10/30/2018 21:55:23</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>10/02/2018 11:18:09</publishTime>
@@ -87,6 +96,12 @@
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>10/02/2018 11:18:09</publishTime>
     </File>
+    <File Include="bin/Senparc.Weixin.dll">
+      <publishTime>10/30/2018 21:55:28</publishTime>
+    </File>
+    <File Include="bin/Senparc.Weixin.MP.dll">
+      <publishTime>10/30/2018 21:55:22</publishTime>
+    </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>10/02/2018 11:18:09</publishTime>
     </File>
@@ -105,14 +120,44 @@
     <File Include="bin/System.Web.Webpages.Razor.dll">
       <publishTime>10/02/2018 11:18:09</publishTime>
     </File>
+    <File Include="bin/WxPayAPI.dll">
+      <publishTime>11/01/2018 00:17:39</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/EntityFramework.resources.dll">
+      <publishTime>10/30/2018 21:42:13</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/EntityFramework.SqlServer.resources.dll">
+      <publishTime>10/30/2018 21:42:13</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
+      <publishTime>10/30/2018 21:42:13</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
+      <publishTime>10/30/2018 21:42:13</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
+      <publishTime>10/30/2018 21:42:13</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Webpages.Deployment.resources.dll">
+      <publishTime>10/30/2018 21:42:13</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Webpages.Razor.resources.dll">
+      <publishTime>10/30/2018 21:42:13</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Webpages.resources.dll">
+      <publishTime>10/30/2018 21:42:13</publishTime>
+    </File>
     <File Include="Global.asax">
       <publishTime>10/02/2018 11:18:08</publishTime>
     </File>
+    <File Include="log4net.config">
+      <publishTime>10/30/2018 21:44:32</publishTime>
+    </File>
     <File Include="Models/HouseMovingDBModel.edmx.diagram">
-      <publishTime>10/02/2018 12:06:15</publishTime>
+      <publishTime>10/31/2018 23:37:33</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>10/02/2018 12:06:15</publishTime>
+      <publishTime>10/30/2018 21:55:29</publishTime>
     </File>
     <File Include="scripts/ai.0.15.0-build58334.js">
       <publishTime>10/02/2018 11:18:18</publishTime>
@@ -124,7 +169,7 @@
       <publishTime>10/02/2018 11:18:08</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/02/2018 12:06:43</publishTime>
+      <publishTime>10/31/2018 23:19:30</publishTime>
     </File>
   </ItemGroup>
 </Project>

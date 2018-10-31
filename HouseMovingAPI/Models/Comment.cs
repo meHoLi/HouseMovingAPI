@@ -16,7 +16,7 @@ namespace HouseMovingAPI.Models
     {
         public int ID { get; set; }
         public Nullable<int> OrderID { get; set; }
-        public Nullable<int> OpenID { get; set; }
+        public string OpenID { get; set; }
         public string Content { get; set; }
         public string CreateTime { get; set; }
         public string NickName { get; set; }

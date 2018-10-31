@@ -13,7 +13,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderID" Type="int" />
-          <Property Name="OpenID" Type="int" />
+          <Property Name="OpenID" Type="varchar" MaxLength="50" />
           <Property Name="Content" Type="varchar" MaxLength="100" />
           <Property Name="CreateTime" Type="varchar" MaxLength="50" />
           <Property Name="NickName" Type="varchar" MaxLength="50" />
@@ -23,7 +23,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OpenID" Type="varbinary" MaxLength="50" />
+          <Property Name="OpenID" Type="varchar" MaxLength="50" />
           <Property Name="CarType" Type="varchar" MaxLength="50" />
           <Property Name="CreateTime" Type="varchar" MaxLength="50" />
           <Property Name="Distance" Type="decimal" Precision="18" Scale="2" />
@@ -59,11 +59,16 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HouseMovingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HouseMovingDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Order" EntityType="HouseMovingDBModel.Order" />
+          <EntitySet Name="Comment" EntityType="HouseMovingDBModel.Comment" />
+        </EntityContainer>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OpenID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CarType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Distance" Type="Decimal" Precision="18" Scale="2" />
@@ -81,19 +86,14 @@
           <Property Name="PayTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PayState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PayType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OpenID" Type="Binary" MaxLength="50" FixedLength="false" />
         </EntityType>
-        <EntityContainer Name="HouseMovingDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Order" EntityType="Self.Order" />
-          <EntitySet Name="Comment" EntityType="HouseMovingDBModel.Comment" />
-        </EntityContainer>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderID" Type="Int32" />
-          <Property Name="OpenID" Type="Int32" />
+          <Property Name="OpenID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Content" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -107,25 +107,25 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="HouseMovingDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="PayType" ColumnName="PayType" />
+                <ScalarProperty Name="PayState" ColumnName="PayState" />
+                <ScalarProperty Name="PayTime" ColumnName="PayTime" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="StartPlace" ColumnName="StartPlace" />
+                <ScalarProperty Name="ServiceTime" ColumnName="ServiceTime" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="PeopleNum" ColumnName="PeopleNum" />
+                <ScalarProperty Name="PayPrice" ColumnName="PayPrice" />
+                <ScalarProperty Name="OrgPrice" ColumnName="OrgPrice" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EndPlace" ColumnName="EndPlace" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CarType" ColumnName="CarType" />
                 <ScalarProperty Name="OpenID" ColumnName="OpenID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CarType" ColumnName="CarType" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="Distance" ColumnName="Distance" />
-                <ScalarProperty Name="EndPlace" ColumnName="EndPlace" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
-                <ScalarProperty Name="OrgPrice" ColumnName="OrgPrice" />
-                <ScalarProperty Name="PayPrice" ColumnName="PayPrice" />
-                <ScalarProperty Name="PeopleNum" ColumnName="PeopleNum" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
-                <ScalarProperty Name="ServiceTime" ColumnName="ServiceTime" />
-                <ScalarProperty Name="StartPlace" ColumnName="StartPlace" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-                <ScalarProperty Name="PayTime" ColumnName="PayTime" />
-                <ScalarProperty Name="PayState" ColumnName="PayState" />
-                <ScalarProperty Name="PayType" ColumnName="PayType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
