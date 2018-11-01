@@ -5,8 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="HouseMovingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“HouseMovingDB.dbo.Comment”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="ID" />
@@ -14,7 +12,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderID" Type="int" />
           <Property Name="OpenID" Type="varchar" MaxLength="50" />
-          <Property Name="Content" Type="varchar" MaxLength="100" />
+          <Property Name="Content" Type="varchar" MaxLength="1000" />
           <Property Name="CreateTime" Type="varchar" MaxLength="50" />
           <Property Name="NickName" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -43,26 +41,28 @@
           <Property Name="PayType" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="HouseMovingDBModelStoreContainer">
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Comment" EntityType="Self.Comment" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Comment].[ID] AS [ID], 
-    [Comment].[OrderID] AS [OrderID], 
-    [Comment].[OpenID] AS [OpenID], 
-    [Comment].[Content] AS [Content], 
-    [Comment].[CreateTime] AS [CreateTime], 
-    [Comment].[NickName] AS [NickName]
-    FROM [dbo].[Comment] AS [Comment]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HouseMovingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="HouseMovingDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Order" EntityType="HouseMovingDBModel.Order" />
           <EntitySet Name="Comment" EntityType="HouseMovingDBModel.Comment" />
+          <EntitySet Name="Order" EntityType="HouseMovingDBModel.Order" />
         </EntityContainer>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="OpenID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="ID" />
@@ -87,23 +87,24 @@
           <Property Name="PayState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PayType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Comment">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrderID" Type="Int32" />
-          <Property Name="OpenID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Content" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CreateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="HouseMovingDBModelStoreContainer" CdmEntityContainer="HouseMovingDBEntities">
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="HouseMovingDBModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="OpenID" ColumnName="OpenID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="HouseMovingDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
@@ -125,18 +126,6 @@
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="CarType" ColumnName="CarType" />
                 <ScalarProperty Name="OpenID" ColumnName="OpenID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Comment">
-            <EntityTypeMapping TypeName="HouseMovingDBModel.Comment">
-              <MappingFragment StoreEntitySet="Comment">
-                <ScalarProperty Name="NickName" ColumnName="NickName" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="OpenID" ColumnName="OpenID" />
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

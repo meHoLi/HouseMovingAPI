@@ -49,14 +49,14 @@ namespace HouseMovingAPI.Controllers
             }
         }
 
-        public ActionResult Update(int id)
+        public ActionResult Cancel(int id)
         {
             using (HouseMovingDBEntities db = new HouseMovingDBEntities())
             {
                 ResponseMessage msg = new ResponseMessage();
                 try
                 {
-                    db.Database.ExecuteSqlCommand("update [Order] set   where id= " + id);
+                    db.Database.ExecuteSqlCommand("update [Order] set PayState=-1  where id= " + id);
                     msg.Status = true;
                 }
                 catch (Exception e)

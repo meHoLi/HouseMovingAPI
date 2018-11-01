@@ -23,7 +23,7 @@ namespace HouseMovingAPI.Controllers
         /// 微信小程序统一下单
         /// </summary>
         /// <returns></returns>
-        public ActionResult WxUnifiedOrder(string openID, int total_fee,string out_trade_no ,string body)
+        public ActionResult WxUnifiedOrder(string openID, int total_fee, string out_trade_no, string body)
         {
             JsApiPay jsApiPay = new JsApiPay();
             jsApiPay.openid = openID;
@@ -128,5 +128,46 @@ namespace HouseMovingAPI.Controllers
             return data;
         }
 
+
+
+        /// <summary>
+        /// 微信退款
+        /// </summary>
+        /// <param name="origTransactionNo">支付时，微信流水号</param>
+        /// <param name="origOutTradeNo">支付时，商户订单号</param>
+        /// <param name="refundFee">退款金额 单位：分</param>
+        /// <param name="totalFee">订单总金额 单位：分</param>
+        public ActionResult WeChatRefund(string origTransactionNo, string origOutTradeNo, string refundFee, string totalFee)
+        {
+            ResponseMessage msg = new ResponseMessage();
+            //若 出错   看http://www.cnblogs.com/ithome8/p/5189926.html
+            WxPayData data = Refund.Run2(origTransactionNo, origOutTradeNo, refundFee, totalFee);
+            try
+            {
+                if (data.GetValue("return_code").ToString() == "SUCCESS" && data.GetValue("result_code").ToString() == "SUCCESS")
+                {
+
+                    PayLogHelper.Debug("WX退款成功" + origTransactionNo);
+                    Response.Write("成功");
+                    msg.Status = true;
+                }
+                else
+                {
+
+                    PayLogHelper.Debug("WX退款失败" + origTransactionNo);
+                    Response.Write("失败");
+                    msg.Status = false;
+                }
+            }
+            catch (WxPayException ex)
+            {
+                //若签名错误，则立即返回结果给微信支付后台
+                WxPayData res = new WxPayData();
+                res.SetValue("return_code", "FAIL");
+                res.SetValue("return_msg", ex.Message);
+                PayLogHelper.Debug("WX:若签名错误" + "Sign check error : " + res.ToXml());
+            }
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
     }
 }
