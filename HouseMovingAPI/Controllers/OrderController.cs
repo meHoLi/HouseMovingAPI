@@ -32,13 +32,34 @@ namespace HouseMovingAPI.Controllers
                 ResponseMessage msg = new ResponseMessage();
                 try
                 {
+                    //先校验优惠码
+                    if (!string.IsNullOrWhiteSpace(model.CouponCode))
+                    {
+                        var couponModel = db.Coupon.FirstOrDefault(p =>  p.Code == model.CouponCode.Trim());//p.IsUsed == false &&
+                        if (couponModel == null)
+                        {
+                            msg.Status = false;
+                            msg.Result = "900";
+                            return Json(msg, JsonRequestBehavior.AllowGet);
+                        }
+                        model.CouponID = couponModel.ID;
+                        //优惠金额
+                        model.SalePrice = couponModel.Amount;
+                        //支付金额
+                        model.PayPrice = model.OrgPrice - couponModel.Amount;
+
+                        //db.Children.Attach(model);
+                        couponModel.IsUsed = true;
+                        db.Entry(couponModel).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    model.PayState = "0";
                     model.OrderNo = DateTime.Now.ToString(FormatDateTime.DateTimeFormatNoStr);
                     model.CreateTime = DateTime.Now.ToString(FormatDateTime.LongDateTimeStr);
                     var entity = db.Order.Add(model);
                     db.SaveChanges();
                     msg.Status = true;
                     msg.Data = model;
-
                 }
                 catch (Exception e)
                 {

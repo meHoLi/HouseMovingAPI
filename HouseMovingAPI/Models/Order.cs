@@ -22,7 +22,7 @@ namespace HouseMovingAPI.Models
         public string EndPlace { get; set; }
         public string Name { get; set; }
         public string OrderNo { get; set; }
-        public string OrgPrice { get; set; }
+        public Nullable<decimal> OrgPrice { get; set; }
         public Nullable<decimal> PayPrice { get; set; }
         public Nullable<int> PeopleNum { get; set; }
         public string Phone { get; set; }
@@ -33,5 +33,7 @@ namespace HouseMovingAPI.Models
         public string PayTime { get; set; }
         public string PayState { get; set; }
         public string PayType { get; set; }
+        public Nullable<int> CouponID { get; set; }
+        public string CouponCode { get; set; }
     }
 }

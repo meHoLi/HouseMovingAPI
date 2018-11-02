@@ -16,6 +16,15 @@
           <Property Name="CreateTime" Type="varchar" MaxLength="50" />
           <Property Name="NickName" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsUsed" Type="bit" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="ID" />
@@ -28,7 +37,7 @@
           <Property Name="EndPlace" Type="varchar" MaxLength="200" />
           <Property Name="Name" Type="nchar" MaxLength="10" />
           <Property Name="OrderNo" Type="varchar" MaxLength="50" />
-          <Property Name="OrgPrice" Type="varchar" MaxLength="200" />
+          <Property Name="OrgPrice" Type="decimal" Precision="18" Scale="2" />
           <Property Name="PayPrice" Type="decimal" Precision="18" Scale="2" />
           <Property Name="PeopleNum" Type="int" />
           <Property Name="Phone" Type="varchar" MaxLength="50" />
@@ -39,9 +48,12 @@
           <Property Name="PayTime" Type="varchar" MaxLength="50" />
           <Property Name="PayState" Type="varchar" MaxLength="50" />
           <Property Name="PayType" Type="varchar" MaxLength="50" />
+          <Property Name="CouponID" Type="int" />
+          <Property Name="CouponCode" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="HouseMovingDBModelStoreContainer">
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -50,6 +62,7 @@
       <Schema Namespace="HouseMovingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="HouseMovingDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Comment" EntityType="HouseMovingDBModel.Comment" />
+          <EntitySet Name="Coupon" EntityType="HouseMovingDBModel.Coupon" />
           <EntitySet Name="Order" EntityType="HouseMovingDBModel.Order" />
         </EntityContainer>
         <EntityType Name="Comment">
@@ -63,6 +76,15 @@
           <Property Name="CreateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsUsed" Type="Boolean" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="ID" />
@@ -75,7 +97,7 @@
           <Property Name="EndPlace" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="OrderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OrgPrice" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="OrgPrice" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="PayPrice" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="PeopleNum" Type="Int32" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -86,8 +108,10 @@
           <Property Name="PayTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PayState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PayType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CouponID" Type="Int32" />
+          <Property Name="CouponCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -105,9 +129,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Coupon">
+            <EntityTypeMapping TypeName="HouseMovingDBModel.Coupon">
+              <MappingFragment StoreEntitySet="Coupon">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="HouseMovingDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
+                <ScalarProperty Name="CouponID" ColumnName="CouponID" />
                 <ScalarProperty Name="PayType" ColumnName="PayType" />
                 <ScalarProperty Name="PayState" ColumnName="PayState" />
                 <ScalarProperty Name="PayTime" ColumnName="PayTime" />

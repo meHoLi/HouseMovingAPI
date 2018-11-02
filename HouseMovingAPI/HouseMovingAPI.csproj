@@ -177,6 +177,9 @@
     <Compile Include="Models\Comment.cs">
       <DependentUpon>HouseMovingDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Coupon.cs">
+      <DependentUpon>HouseMovingDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HouseMovingDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
