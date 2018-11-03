@@ -160,23 +160,27 @@ namespace HouseMovingAPI.Controllers
                         {
                             msg.Status = false;
                             msg.Result = "500";
+                            msg.Msg = "退款数据更新失败";
                         }
                         return Json(msg, JsonRequestBehavior.AllowGet);
                     }
                     PayLogHelper.Debug("WX退款成功" + origTransactionNo);
-                    Response.Write("成功");
-                    msg.Status = true;
+                    msg.Status = true; 
                 }
                 else
                 {
 
                     PayLogHelper.Debug("WX退款失败" + origTransactionNo);
-                    Response.Write("失败");
                     msg.Status = false;
+                    msg.Result = "501";
+                    //msg.Msg = data.GetValue("err_code_des").ToString();
                 }
             }
             catch (WxPayException ex)
             {
+                msg.Status = false;
+                msg.Result = "502";
+                msg.Msg = "退款出错";
                 //若签名错误，则立即返回结果给微信支付后台
                 WxPayData res = new WxPayData();
                 res.SetValue("return_code", "FAIL");
