@@ -17,9 +17,22 @@ namespace HouseMovingAPI.Controllers
             {
                 ResponseMessage msg = new ResponseMessage();
                 msg.Status = true;
-                var list = db.Order.Where(p => p.OpenID==openID
-                           &&string.Compare(p.CreateTime, startTime, StringComparison.Ordinal) >= 0
-                           && string.Compare(p.CreateTime, endTime, StringComparison.Ordinal) <= 0).ToList();
+                var list = db.Order.Where(p => p.OpenID == openID
+                           && string.Compare(p.CreateTime, startTime, StringComparison.Ordinal) >= 0
+                           && string.Compare(p.CreateTime, endTime, StringComparison.Ordinal) <= 0).OrderByDescending(x => x.CreateTime).ToList();
+                msg.Data = list;
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult GetOrderList(string startTime, string endTime)
+        {
+            using (HouseMovingDBEntities db = new HouseMovingDBEntities())
+            {
+                ResponseMessage msg = new ResponseMessage();
+                msg.Status = true;
+                var list = db.Order.Where(p => string.Compare(p.CreateTime, startTime, StringComparison.Ordinal) >= 0
+                           && string.Compare(p.CreateTime, endTime, StringComparison.Ordinal) <= 0)
+                           .OrderByDescending(x => x.CreateTime).ToList();
                 msg.Data = list;
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
@@ -35,7 +48,7 @@ namespace HouseMovingAPI.Controllers
                     //先校验优惠码
                     if (!string.IsNullOrWhiteSpace(model.CouponCode))
                     {
-                        var couponModel = db.Coupon.FirstOrDefault(p =>  p.Code == model.CouponCode.Trim());//p.IsUsed == false &&
+                        var couponModel = db.Coupon.FirstOrDefault(p => p.Code == model.CouponCode.Trim());//p.IsUsed == false &&
                         if (couponModel == null)
                         {
                             msg.Status = false;

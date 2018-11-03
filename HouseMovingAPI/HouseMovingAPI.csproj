@@ -144,6 +144,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cert\NEWapiclient_cert.txt" />
     <Content Include="Global.asax" />
     <Content Include="Models\HouseMovingDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

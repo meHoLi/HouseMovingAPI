@@ -66,8 +66,8 @@ namespace WxPayAPI
                 {
                     string path = HttpContext.Current.Request.PhysicalApplicationPath;
                     string allpath = path + WxPayConfig.SSLCERT_PATH;
-                    //X509Certificate2 cert = new X509Certificate2(allpath, WxPayConfig.SSLCERT_PASSWORD);
-                    X509Certificate2 cert = new X509Certificate2(path + WxPayConfig.SSLCERT_PATH, WxPayConfig.SSLCERT_PASSWORD, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable);
+                    X509Certificate2 cert = new X509Certificate2(allpath, WxPayConfig.SSLCERT_PASSWORD);
+                    //X509Certificate2 cert = new X509Certificate2(path + WxPayConfig.SSLCERT_PATH, WxPayConfig.SSLCERT_PASSWORD, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.Exportable);
                     request.ClientCertificates.Add(cert);
                     Log.Debug("WxPayApi", "PostXml used cert");
                 }

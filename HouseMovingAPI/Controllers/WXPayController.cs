@@ -139,9 +139,9 @@ namespace HouseMovingAPI.Controllers
         /// <param name="totalFee">订单总金额 单位：分</param>
         public ActionResult WeChatRefund(string origTransactionNo, string origOutTradeNo, string refundFee, string totalFee)
         {
-            origOutTradeNo = "20181101001843568";
-            refundFee = "1";
-            totalFee = "1";
+            //origOutTradeNo = "20181102225722191";
+            //refundFee = "1";
+            //totalFee = "1";
             ResponseMessage msg = new ResponseMessage();
             //若 出错   看http://www.cnblogs.com/ithome8/p/5189926.html
             WxPayData data = Refund.Run2(origTransactionNo, origOutTradeNo, refundFee, totalFee);
