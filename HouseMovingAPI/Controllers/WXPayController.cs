@@ -62,7 +62,7 @@ namespace HouseMovingAPI.Controllers
                 {
                     ResponseMessage msg = new ResponseMessage();
                     msg.Status = true;
-                    var entity = db.Order.FirstOrDefault(p => p.OrderNo == out_trade_no);
+                    var entity = db.Order.FirstOrDefault(p => p.OrderNo == out_trade_no && p.PayState != "2");
                     if (entity != null)
                     {
                         entity.PayTime = DateTime.Now.ToString(FormatDateTime.LongDateTimeStr);
@@ -153,8 +153,10 @@ namespace HouseMovingAPI.Controllers
                     {
                         try
                         {
+
                             db.Database.ExecuteSqlCommand("update [Order] set PayState=2  where OrderNo= '" + origOutTradeNo + "'");
                             msg.Status = true;
+
                         }
                         catch (Exception e)
                         {
@@ -165,7 +167,7 @@ namespace HouseMovingAPI.Controllers
                         return Json(msg, JsonRequestBehavior.AllowGet);
                     }
                     PayLogHelper.Debug("WX退款成功" + origTransactionNo);
-                    msg.Status = true; 
+                    msg.Status = true;
                 }
                 else
                 {

@@ -48,7 +48,7 @@ namespace HouseMovingAPI.Controllers
                     //先校验优惠码
                     if (!string.IsNullOrWhiteSpace(model.CouponCode))
                     {
-                        var couponModel = db.Coupon.FirstOrDefault(p => p.Code == model.CouponCode.Trim());//p.IsUsed == false &&
+                        var couponModel = db.Coupon.FirstOrDefault(p => p.IsUsed == false && p.Code == model.CouponCode.Trim());
                         if (couponModel == null)
                         {
                             msg.Status = false;

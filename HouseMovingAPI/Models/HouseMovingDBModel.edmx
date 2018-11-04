@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="HouseMovingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CarPriceSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarType" Type="varchar" MaxLength="50" />
+          <Property Name="StartPrice" Type="int" />
+          <Property Name="StartDistance" Type="int" />
+          <Property Name="UnitPrice" Type="int" />
+          <Property Name="CarName" Type="varchar" MaxLength="50" />
+          <Property Name="CarCode" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="ID" />
@@ -52,6 +64,7 @@
           <Property Name="CouponCode" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="HouseMovingDBModelStoreContainer">
+          <EntitySet Name="CarPriceSetting" EntityType="Self.CarPriceSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
@@ -61,30 +74,11 @@
     <edmx:ConceptualModels>
       <Schema Namespace="HouseMovingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="HouseMovingDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Order" EntityType="HouseMovingDBModel.Order" />
+          <EntitySet Name="CarPriceSetting" EntityType="HouseMovingDBModel.CarPriceSetting" />
           <EntitySet Name="Comment" EntityType="HouseMovingDBModel.Comment" />
           <EntitySet Name="Coupon" EntityType="HouseMovingDBModel.Coupon" />
-          <EntitySet Name="Order" EntityType="HouseMovingDBModel.Order" />
         </EntityContainer>
-        <EntityType Name="Comment">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrderID" Type="Int32" />
-          <Property Name="OpenID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="CreateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Coupon">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IsUsed" Type="Boolean" />
-          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
-        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="ID" />
@@ -111,34 +105,44 @@
           <Property Name="CouponID" Type="Int32" />
           <Property Name="CouponCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="CarPriceSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartPrice" Type="Int32" />
+          <Property Name="StartDistance" Type="Int32" />
+          <Property Name="UnitPrice" Type="Int32" />
+          <Property Name="CarName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CarCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="OpenID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsUsed" Type="Boolean" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="HouseMovingDBModelStoreContainer" CdmEntityContainer="HouseMovingDBEntities">
-          <EntitySetMapping Name="Comment">
-            <EntityTypeMapping TypeName="HouseMovingDBModel.Comment">
-              <MappingFragment StoreEntitySet="Comment">
-                <ScalarProperty Name="NickName" ColumnName="NickName" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="OpenID" ColumnName="OpenID" />
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Coupon">
-            <EntityTypeMapping TypeName="HouseMovingDBModel.Coupon">
-              <MappingFragment StoreEntitySet="Coupon">
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="HouseMovingDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
@@ -162,6 +166,41 @@
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="CarType" ColumnName="CarType" />
                 <ScalarProperty Name="OpenID" ColumnName="OpenID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarPriceSetting">
+            <EntityTypeMapping TypeName="HouseMovingDBModel.CarPriceSetting">
+              <MappingFragment StoreEntitySet="CarPriceSetting">
+                <ScalarProperty Name="CarCode" ColumnName="CarCode" />
+                <ScalarProperty Name="CarName" ColumnName="CarName" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="StartDistance" ColumnName="StartDistance" />
+                <ScalarProperty Name="StartPrice" ColumnName="StartPrice" />
+                <ScalarProperty Name="CarType" ColumnName="CarType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="HouseMovingDBModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="OpenID" ColumnName="OpenID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coupon">
+            <EntityTypeMapping TypeName="HouseMovingDBModel.Coupon">
+              <MappingFragment StoreEntitySet="Coupon">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

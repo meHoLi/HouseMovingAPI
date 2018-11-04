@@ -168,12 +168,16 @@
     <Compile Include="Common\PayLogHelper.cs" />
     <Compile Include="Common\ResponseMessage.cs" />
     <Compile Include="Common\WeChatAppDecrypt.cs" />
+    <Compile Include="Controllers\CarPriceSettingController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\WeChatAppAuthorizeController.cs" />
     <Compile Include="Controllers\WXPayController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CarPriceSetting.cs">
+      <DependentUpon>HouseMovingDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Comment.cs">
       <DependentUpon>HouseMovingDBModel.tt</DependentUpon>
@@ -225,6 +229,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CarPriceSetting\" />
     <Folder Include="Views\Comment\" />
     <Folder Include="Views\WXPay\" />
   </ItemGroup>

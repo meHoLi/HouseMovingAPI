@@ -8,30 +8,39 @@ using System.Web.Mvc;
 
 namespace HouseMovingAPI.Controllers
 {
-    public class CommentController : Controller
+    public class CarPriceSettingController : Controller
     {
-        // GET: Comment
+        // GET: CarPriceSetting
         public ActionResult Index()
         {
             using (HouseMovingDBEntities db = new HouseMovingDBEntities())
             {
                 ResponseMessage msg = new ResponseMessage();
                 msg.Status = true;
-                var list = db.Comment.ToList();
-                msg.Data = list;
+                msg.Data = db.CarPriceSetting.ToList();
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
         }
-
-        public ActionResult Add(Comment model)
+        public ActionResult GetModelByCarCode(string carCode)
+        {
+            using (HouseMovingDBEntities db = new HouseMovingDBEntities())
+            {
+                ResponseMessage msg = new ResponseMessage();
+                msg.Status = true;
+                var model = db.CarPriceSetting.FirstOrDefault(p => p.CarCode == carCode);
+                msg.Data = model;
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult Update(CarPriceSetting model)
         {
             using (HouseMovingDBEntities db = new HouseMovingDBEntities())
             {
                 ResponseMessage msg = new ResponseMessage();
                 try
                 {
-                    model.CreateTime = DateTime.Now.ToString(FormatDateTime.LongDateTimeStr);
-                    var entity = db.Comment.Add(model);
+                    db.CarPriceSetting.Attach(model);
+                    db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     msg.Status = true;
                 }
