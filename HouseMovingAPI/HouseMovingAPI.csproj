@@ -171,6 +171,7 @@
     <Compile Include="Controllers\CarPriceSettingController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\SendEMailController.cs" />
     <Compile Include="Controllers\WeChatAppAuthorizeController.cs" />
     <Compile Include="Controllers\WXPayController.cs" />
     <Compile Include="Global.asax.cs">
@@ -231,6 +232,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\CarPriceSetting\" />
     <Folder Include="Views\Comment\" />
+    <Folder Include="Views\SendEMail\" />
     <Folder Include="Views\WXPay\" />
   </ItemGroup>
   <ItemGroup>
