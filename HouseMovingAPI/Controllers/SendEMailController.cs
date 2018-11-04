@@ -19,7 +19,7 @@ namespace HouseMovingAPI.Controllers
             //https://www.cnblogs.com/atree/p/smtp-qq-email.html
             MailMessage mail = new  MailMessage();
             try
-            {
+            { 
                 //mail.To = "735939357@qq.com";
                 //mail.From = "735939357@qq.com";                
                 mail.To = "346857553@qq.com";
