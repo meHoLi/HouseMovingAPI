@@ -19,18 +19,18 @@ namespace HouseMovingAPI.Controllers
             //https://www.cnblogs.com/atree/p/smtp-qq-email.html
             MailMessage mail = new  MailMessage();
             try
-            { 
-                //mail.To = "735939357@qq.com";
-                //mail.From = "735939357@qq.com";                
-                mail.To = "346857553@qq.com";
-                mail.From = "346857553@qq.com";
+            {
+                mail.To = "735939357@qq.com";
+                mail.From = "735939357@qq.com";
+                //mail.To = "346857553@qq.com";
+                //mail.From = "346857553@qq.com";
                 mail.Subject = "小程序订单通知";
                 mail.BodyFormat = System.Web.Mail.MailFormat.Html;
                 mail.Body = "您的小程序订单有变化，请进入小程序查看";
 
                 mail.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", "1"); //身份验证
                 mail.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", mail.From); //邮箱登录账号，这里跟前面的发送账号一样就行
-                mail.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", "gkuxvctylledbjai");// "tkutqkiorfksbbdf"); //这个密码要注意：如果是一般账号，要用授权码；企业账号用登录密码
+                mail.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", "tkutqkiorfksbbdf"); //"gkuxvctylledbjai");// //这个密码要注意：如果是一般账号，要用授权码；企业账号用登录密码
                 mail.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpserverport", 465);//端口
                 mail.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpusessl", "true");//SSL加密
                 System.Web.Mail.SmtpMail.SmtpServer = "smtp.qq.com";    //企业账号用smtp.exmail.qq.com
