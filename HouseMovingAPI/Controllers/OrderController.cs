@@ -32,7 +32,7 @@ namespace HouseMovingAPI.Controllers
                 msg.Status = true;
                 var list = db.Order.Where(p => string.Compare(p.CreateTime, startTime, StringComparison.Ordinal) >= 0
                            && string.Compare(p.CreateTime, endTime, StringComparison.Ordinal) <= 0)
-                           .OrderByDescending(x => x.CreateTime).ToList();
+                           .OrderByDescending(x => x.ServiceTime).ToList();
                 msg.Data = list;
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
