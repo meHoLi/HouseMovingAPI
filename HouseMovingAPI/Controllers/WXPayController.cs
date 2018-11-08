@@ -143,6 +143,20 @@ namespace HouseMovingAPI.Controllers
             //refundFee = "1";
             //totalFee = "1";
             ResponseMessage msg = new ResponseMessage();
+
+            using (HouseMovingDBEntities db = new HouseMovingDBEntities())
+            {
+                msg.Status = true;
+                var entity = db.Order.FirstOrDefault(p => p.OrderNo == origOutTradeNo);
+                if (DateTime.Parse(entity.ServiceTime).AddHours(2) >= DateTime.Now)
+                {
+                    msg.Status = false;
+                    msg.Result = "504";
+                    msg.Msg = "定单离服务时间小于2小时,不能取消订单！";
+                }
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
+
             //若 出错   看http://www.cnblogs.com/ithome8/p/5189926.html
             WxPayData data = Refund.Run2(origTransactionNo, origOutTradeNo, refundFee, totalFee);
             try

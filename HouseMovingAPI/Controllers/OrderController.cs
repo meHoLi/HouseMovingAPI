@@ -101,5 +101,23 @@ namespace HouseMovingAPI.Controllers
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
         }
+        public ActionResult Finish(int id)
+        {
+            using (HouseMovingDBEntities db = new HouseMovingDBEntities())
+            {
+                ResponseMessage msg = new ResponseMessage();
+                try
+                {
+                    db.Database.ExecuteSqlCommand("update [Order] set PayState=3  where id= " + id);
+                    msg.Status = true;
+                }
+                catch (Exception e)
+                {
+                    msg.Status = false;
+                    msg.Result = "500";
+                }
+                return Json(msg, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }
