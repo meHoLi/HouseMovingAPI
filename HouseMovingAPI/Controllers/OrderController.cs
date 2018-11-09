@@ -19,7 +19,7 @@ namespace HouseMovingAPI.Controllers
                 msg.Status = true;
                 var list = db.Order.Where(p => p.OpenID == openID
                            && string.Compare(p.CreateTime, startTime, StringComparison.Ordinal) >= 0
-                           && string.Compare(p.CreateTime, endTime, StringComparison.Ordinal) <= 0).OrderByDescending(x => x.CreateTime).ToList();
+                           && string.Compare(p.CreateTime, endTime, StringComparison.Ordinal) <= 0).OrderByDescending(x => x.ServiceTime).ToList();
                 msg.Data = list;
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
@@ -101,6 +101,7 @@ namespace HouseMovingAPI.Controllers
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
         }
+
         public ActionResult Finish(int id)
         {
             using (HouseMovingDBEntities db = new HouseMovingDBEntities())

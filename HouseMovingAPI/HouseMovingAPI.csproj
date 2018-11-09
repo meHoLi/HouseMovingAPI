@@ -170,6 +170,7 @@
     <Compile Include="Common\WeChatAppDecrypt.cs" />
     <Compile Include="Controllers\CarPriceSettingController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\CouponController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\SendEMailController.cs" />
     <Compile Include="Controllers\WeChatAppAuthorizeController.cs" />

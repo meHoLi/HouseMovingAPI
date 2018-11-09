@@ -35,5 +35,6 @@ namespace HouseMovingAPI.Models
         public string PayType { get; set; }
         public Nullable<int> CouponID { get; set; }
         public string CouponCode { get; set; }
+        public string TuJingDian { get; set; }
     }
 }
