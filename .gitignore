@@ -12,3 +12,4 @@ packages
 .suo
 *.config
 cert
+/HouseMovingAPI/Controllers/WeChatAppAuthorizeController.cs

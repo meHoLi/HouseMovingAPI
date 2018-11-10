@@ -15,9 +15,11 @@ namespace HouseMovingAPI.Controllers
         {
             using (HouseMovingDBEntities db = new HouseMovingDBEntities())
             {
+                var dt = DateTime.Now.AddMonths(-1).ToString(FormatDateTime.LongDateTimeStr);
                 ResponseMessage msg = new ResponseMessage();
                 msg.Status = true;
-                var list = db.Comment.ToList();
+                var list = db.Comment.Where(p => string.Compare(p.CreateTime,dt) >= 0)
+                    .OrderByDescending(p => p.CreateTime).ToList();
                 msg.Data = list;
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }

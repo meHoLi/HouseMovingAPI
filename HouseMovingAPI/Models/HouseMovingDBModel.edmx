@@ -63,6 +63,7 @@
           <Property Name="CouponID" Type="int" />
           <Property Name="CouponCode" Type="varchar" MaxLength="50" />
           <Property Name="TuJingDian" Type="varchar" MaxLength="500" />
+          <Property Name="IsDelete" Type="bit" />
         </EntityType>
         <EntityContainer Name="HouseMovingDBModelStoreContainer">
           <EntitySet Name="CarPriceSetting" EntityType="Self.CarPriceSetting" Schema="dbo" store:Type="Tables" />
@@ -106,6 +107,7 @@
           <Property Name="CouponID" Type="Int32" />
           <Property Name="CouponCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TuJingDian" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
         </EntityType>
         <EntityType Name="CarPriceSetting">
           <Key>
@@ -148,6 +150,7 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="HouseMovingDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="TuJingDian" ColumnName="TuJingDian" />
                 <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
                 <ScalarProperty Name="CouponID" ColumnName="CouponID" />

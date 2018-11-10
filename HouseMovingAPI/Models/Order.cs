@@ -36,5 +36,6 @@ namespace HouseMovingAPI.Models
         public Nullable<int> CouponID { get; set; }
         public string CouponCode { get; set; }
         public string TuJingDian { get; set; }
+        public Nullable<bool> IsDelete { get; set; }
     }
 }
