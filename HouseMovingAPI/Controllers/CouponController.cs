@@ -39,6 +39,7 @@ namespace HouseMovingAPI.Controllers
                         return Json(msg, JsonRequestBehavior.AllowGet);
                     }
                     model.IsUsed = false;
+                    msg.Status = true;
                     var entity = db.Coupon.Add(model);
                     db.SaveChanges();
                 }
